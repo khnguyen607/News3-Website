@@ -3,7 +3,7 @@ class Database{
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $database = 'room_booking';
+    private $database = 'bignew';
     private $conn;
 
     public function connect() {

@@ -1,190 +1,246 @@
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="vi">
 
-<div class="login-box">
-    <div class="lb-header">
-        <a href="#" class="active" id="login-box-link">Login</a>
-        <a href="#" id="signup-box-link">Sign Up</a>
+<head>
+    <meta charset="utf-8">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+</head>
+
+<body>
+    <div class="wrapper" id="form__in">
+        <div class="title">
+            Đăng nhập
+        </div>
+        <form action="../backend/index.php?controller=user&action=login" method="post">
+            <span style="color: red;" class="loginF d-none">Sai tài khoản mật khẩu!</span>
+            <span style="color: rgb(0, 141, 0);" class="signupT d-none">Đăng ký thành công!</span>
+            <div class="field">
+                <input type="text" name="user" required>
+                <label>Tên đăng nhập</label>
+            </div>
+            <div class="field">
+                <input type="password" name="pass" required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Đăng nhập">
+            </div>
+            <div class="signup-link">
+                Bạn chưa có tài khoản? <a style="cursor: pointer;" onclick="document.querySelector('#form__up').classList.remove('d-none'); 
+                document.querySelector('#form__in').classList.add('d-none')">Đăng ký!</a>
+            </div>
+        </form>
     </div>
-    <form class="email-login">
-        <div class="u-form-group">
-            <input type="email" placeholder="Email" />
+
+    <div class="wrapper d-none" id="form__up">
+        <div class="title">
+            Đăng ký
         </div>
-        <div class="u-form-group">
-            <input type="password" placeholder="Mật khẩu" />
-        </div>
-        <div class="u-form-group">
-            <button>Đăng nhập</button>
-        </div>
-    </form>
-    <form class="email-signup">
-        <div class="u-form-group">
-            <input type="text" placeholder="Tên của bạn" />
-        </div>
-        <div class="u-form-group">
-            <input type="email" placeholder="Email" />
-        </div>
-        <div class="u-form-group">
-            <input type="password" placeholder="Mật khẩu"/>
-        </div>
-        <div class="u-form-group">
-            <button>Đăng ký</button>
-        </div>
-    </form>
-</div>
+        <form action="../backend/index.php?controller=user&action=addUser" method="post">
+            <span style="color: red;" class="signupF d-none">Tên đăng nhập đã tồn tại!</span>
+            <div class="field">
+                <input type="text" name="name" required>
+                <label>Họ và Tên</label>
+            </div>
+            <div class="field">
+                <input type="text" name="user" required>
+                <label>Tên đăng nhập</label>
+            </div>
+            <div class="field">
+                <input type="text" name="email" required>
+                <label>Email</label>
+            </div>
+            <div class="field">
+                <input type="password" name="pass" required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Đăng ký">
+            </div>
+            <div class="signup-link">
+                Bạn đã có tài khoản? <a style="cursor: pointer;" onclick="document.querySelector('#form__in').classList.remove('d-none'); 
+                document.querySelector('#form__up').classList.add('d-none')">Đăng nhập!</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
 
 <style>
+    @import url('https://fonts.googleapis.com/css?family=Afacad:400,500,600,700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Afacad', sans-serif;
+    }
+
+    html,
     body {
-        background-color: #1cbb9b;
-    }
-
-    .login-box {
-        position: relative;
-        margin: 10px auto;
-        width: 500px;
-        height: 350px;
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 3px;
-        -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
-        -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
-        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
-    }
-
-    .lb-header {
-        position: relative;
-        color: #00415d;
-        margin: 5px 5px 10px 5px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
-        text-align: center;
-        height: 28px;
-    }
-
-    .lb-header a {
-        margin: 0 25px;
-        padding: 0 20px;
-        text-decoration: none;
-        color: #666;
-        font-weight: bold;
-        font-size: 15px;
-        -webkit-transition: all 0.1s linear;
-        -moz-transition: all 0.1s linear;
-        transition: all 0.1s linear;
-    }
-
-    .lb-header .active {
-        color: #029f5b;
-        font-size: 18px;
-    }
-
-    .social-login {
-        position: relative;
-        float: left;
+        display: grid;
+        height: 100%;
         width: 100%;
-        height: auto;
-        padding: 10px 0 15px 0;
-        border-bottom: 1px solid #eee;
+        place-items: center;
+        background: #f2f2f2;
+        /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
     }
 
-    .social-login a {
-        position: relative;
-        float: left;
-        width: calc(40% - 8px);
-        text-decoration: none;
+    ::selection {
+        background: #4158d0;
         color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        padding: 12px;
-        border-radius: 2px;
-        font-size: 12px;
-        text-transform: uppercase;
-        margin: 0 3%;
+    }
+
+    .wrapper {
+        width: 380px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper .title {
+        font-size: 35px;
+        font-weight: 600;
         text-align: center;
+        line-height: 100px;
+        color: #fff;
+        user-select: none;
+        border-radius: 15px 15px 0 0;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
     }
 
-    .social-login a i {
-        position: relative;
-        float: left;
-        width: 20px;
-        top: 2px;
+    .wrapper form {
+        padding: 10px 30px 50px 30px;
     }
 
-    .social-login a:first-child {
-        background-color: #49639F;
-    }
-
-    .social-login a:last-child {
-        background-color: #DF4A32;
-    }
-
-    .email-login,
-    .email-signup {
-        position: relative;
-        float: left;
+    .wrapper form .field {
+        height: 50px;
         width: 100%;
-        height: auto;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .wrapper form .field input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        font-size: 17px;
+        padding-left: 20px;
+        border: 1px solid lightgrey;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .wrapper form .field input:focus,
+    form .field input:valid {
+        border-color: #4158d0;
+    }
+
+    .wrapper form .field label {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        color: #999999;
+        font-weight: 400;
+        font-size: 17px;
+        pointer-events: none;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+    }
+
+    form .field input:focus~label,
+    form .field input:valid~label {
+        top: 0%;
+        font-size: 16px;
+        color: #4158d0;
+        background: #fff;
+        transform: translateY(-50%);
+    }
+
+    form .content {
+        display: flex;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    form .content .checkbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form .content input {
+        width: 15px;
+        height: 15px;
+        background: red;
+    }
+
+    form .content label {
+        color: #262626;
+        user-select: none;
+        padding-left: 5px;
+    }
+
+    form .content .pass-link {
+        color: "";
+    }
+
+    form .field input[type="submit"] {
+        color: #fff;
+        border: none;
+        padding-left: 0;
+        margin-top: -10px;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        transition: all 0.3s ease;
+    }
+
+    form .field input[type="submit"]:active {
+        transform: scale(0.95);
+    }
+
+    form .signup-link {
+        color: #262626;
         margin-top: 20px;
         text-align: center;
     }
 
-    .u-form-group {
-        width: 100%;
-        margin-bottom: 10px;
+    form .pass-link a,
+    form .signup-link a {
+        color: #4158d0;
+        text-decoration: none;
     }
 
-    .u-form-group input[type="email"],
-    .u-form-group input[type="password"],
-    .u-form-group input[type="text"] {
-        width: calc(50% - 22px);
-        height: 45px;
-        outline: none;
-        border: 1px solid #ddd;
-        padding: 0 10px;
-        border-radius: 2px;
-        color: #333;
-        font-size: 0.8rem;
-        -webkit-transition: all 0.1s linear;
-        -moz-transition: all 0.1s linear;
-        transition: all 0.1s linear;
-    }
-
-    .u-form-group input:focus {
-        border-color: #358efb;
-    }
-
-    .u-form-group button {
-        width: 50%;
-        background-color: #1CB94E;
-        border: none;
-        outline: none;
-        color: #fff;
-        font-size: 14px;
-        font-weight: normal;
-        padding: 14px 0;
-        border-radius: 2px;
-        text-transform: uppercase;
-    }
-
-    .forgot-password {
-        width: 50%;
-        text-align: left;
+    form .pass-link a:hover,
+    form .signup-link a:hover {
         text-decoration: underline;
-        color: #888;
-        font-size: 0.75rem;
     }
 </style>
 
 <script>
-    $(".email-signup").hide();
-    $("#signup-box-link").click(function () {
-        $(".email-login").fadeOut(100);
-        $(".email-signup").delay(100).fadeIn(100);
-        $("#login-box-link").removeClass("active");
-        $("#signup-box-link").addClass("active");
-    });
-    $("#login-box-link").click(function () {
-        $(".email-login").delay(100).fadeIn(100);;
-        $(".email-signup").fadeOut(100);
-        $("#login-box-link").addClass("active");
-        $("#signup-box-link").removeClass("active");
-    });
+    var loginF = new URLSearchParams(window.location.search).get('loginF')
+    var signupT = new URLSearchParams(window.location.search).get('signupT')
+    var signupF = new URLSearchParams(window.location.search).get('signupF')
+
+    if (signupF) {
+        document.querySelector('.signupF').classList.remove('d-none')
+        document.querySelector('#form__up input[name="name"]').value = signupF
+        document.querySelector('#form__in').classList.add('d-none')
+        document.querySelector('#form__up').classList.remove('d-none')
+    } else if (signupT) {
+        document.querySelector('.signupT').classList.remove('d-none')
+        document.querySelector('#form__in input[name="user"]').value = signupT
+    } else if (loginF) {
+        document.querySelector('.loginF').classList.remove('d-none')
+        document.querySelector('#form__in input[name="user"]').value = loginF
+    }
 </script>

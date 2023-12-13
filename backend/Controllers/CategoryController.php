@@ -1,37 +1,31 @@
 <?php
 
-class NewController extends BaseController
+class CategoryController extends BaseController
 {
-    private $newModel;
+    private $categoryModel;
 
     public function __construct()
     {
-        $this->loadModel('NewModel');
-        $this->newModel = new NewModel;
+        $this->loadModel('CategoryModel');
+        $this->categoryModel = new CategoryModel;
     }
 
     public function index()
     {
-        $news = $this->newModel->getAll();
+        $rooms = $this->categoryModel->getAll();
 
         // Trả về dữ liệu dưới dạng JSON
         header('Content-Type: application/json');
-        echo json_encode($news);
+        echo json_encode($rooms);
     }
 
     public function findNew()
     {
         $id = $_GET['id'];
-        $new = $this->newModel->findId($id);
+        $room = $this->categoryModel->findId($id);
         // Trả về dữ liệu dưới dạng JSON
         header('Content-Type: application/json');
-        echo json_encode($new);
-    }
-
-    public function incViews()
-    {
-        $id = $_GET['id'];
-        $this->newModel->Views($id);
+        echo json_encode($room);
     }
 
     public function addRoom()
@@ -44,7 +38,7 @@ class NewController extends BaseController
             'utility'   => $_POST['utility']
         ];
 
-        $this->newModel->store($data);
+        $this->categoryModel->store($data);
         header("Location: ../frontend/dashboard.html?tab=mgr__room");
     }
 
@@ -59,7 +53,7 @@ class NewController extends BaseController
             'utility'   => $_POST['utility']
         ];
 
-        $this->newModel->edit($id, $data);
+        $this->categoryModel->edit($id, $data);
 
         header("Location: ../frontend/dashboard.html?tab=mgr__room");
     }
@@ -70,7 +64,7 @@ class NewController extends BaseController
         $data = [
             'status' => '0'
         ];
-        $this->newModel->edit($id, $data);
+        $this->categoryModel->edit($id, $data);
         header("Location: ../frontend/dashboard.html?tab=mgr__room");
     }
 
